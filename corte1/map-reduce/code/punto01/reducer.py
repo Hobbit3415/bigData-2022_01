@@ -1,16 +1,16 @@
 import sys
 
-arreglo = []
+llave = None
+total = 0
+
 for line in sys.stdin:
-	laimu = line.split()
-	arreglo.append(laimu)
-
-auxArr = []
-for l in arreglo:
-	auxArr.append(l)
-
-for i in range(len(auxArr)):
-	contador = 1
-	for j in range(i+1, len(auxArr)):
-		contador = contador +1
-	print(auxArr[i], contador)
+	lla, val = line.split("\t")
+	val = int(val)
+	if lla == llave:
+		total += val
+	else:
+		if llave is not None:
+			print(llave, total)
+		llave = lla
+		total = val
+print(llave, total)
