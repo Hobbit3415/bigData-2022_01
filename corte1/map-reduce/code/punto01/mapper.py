@@ -1,7 +1,16 @@
 import sys
 
+llave = None
+total = 0
+
 for line in sys.stdin:
-	print(line)
-	linea = line.split()
-	for i in range(len(lines)):
-		print(linea[i].lower(), "1")
+	lla, val,= line.split("\t")
+	val = int(val)
+	if lla == llave:
+		total += val
+	else:
+		if llave is not None:
+			print(llave, total)
+		llave = lla
+		total = val
+print(llave, total)
