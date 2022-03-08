@@ -13,11 +13,9 @@ for line in sys.stdin:
 	else:
 		if llave is not None:
 			#total = total/cont
-			print(llave, total)
+			print(llave, total/cont)
 			#cont = 0
 		llave = lla
 		total = val
-print(cont)
-total = total/cont
-cont = 0
-print(llave, total)
+		cont = 1
+print(llave, total/cont)

@@ -1,11 +1,10 @@
 import sys
-cont = 0
+input = sys.stdin
+next(input)
 
-for line in sys.stdin:
-	if cont == 0: 
-		cont = 1
-	else:
-		print("Ingreso al mapper")
-		precio = line.split(",")[1]
-		ciudad = line.split(",")[7]
-		print(ciudad, "\t", precio)
+for line in input:
+	if not line:
+		break
+	precio = line.split(",")[1]
+	ciudad = line.split(",")[6]
+	print(ciudad, "\t", precio)
