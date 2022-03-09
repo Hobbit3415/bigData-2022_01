@@ -1,17 +1,17 @@
+
 import sys
 
-llave = None
+llave_actual = None
 total = 0
-cont = 0
 
 for line in sys.stdin:
-	lla, val = line.split("\t")
-	val = int(val)
-	if lla == llave:
-		total += val
-	else:
-		if llave is not None:
-			print(total,"\t",llave)
-		llave = lla
-		total = val
-print(total,"\t",llave)
+        key, val = line.split("\t")
+        val = int(val)
+        if key == llave_actual:
+                total+=val
+        else:
+                if llave_actual is not None:
+                        print('%10d'%int(llave_actual),"\t", total)
+                total =val
+                llave_actual = key
+print('%10d'%int(llave_actual), "\t", total)

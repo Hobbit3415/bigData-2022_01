@@ -1,18 +1,19 @@
+
 import sys
 
-llaveCondado = None
-llaveCiudad = None
-cont = 0
+counter = 0
+llave_actual = None
+val_actual = None
 
 for line in sys.stdin:
-	llaCo, llaCi = line.split("\t")
-	if llaCo == llaveCondado:
-		if llaCi != llaveCiudad:
-			cont += 1
-	else:
-		if llaveCiudad is not None:
-			print(cont,"\t","1")
-		llaveCiudad = llaCi
-		llaveCondado = llaCo
-		cont = 1
-print(cont,"\t","1")
+        key, val = line.split("\t")
+        if key == llave_actual:
+                if val != val_actual:
+                        counter+=1
+        else:
+                if llave_actual is not None:
+                        print(counter,"\t", "1")
+                counter = 1
+        llave_actual = key
+        val_actual = val
+print(counter, "\t", "1")
