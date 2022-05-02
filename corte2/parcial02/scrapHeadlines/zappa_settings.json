@@ -1,0 +1,13 @@
+{
+    "dev": {
+        "app_function": "scrapHeadlines.handler",
+        "profile_name": null,
+	"project_name": "parcial02-scrap-headlines",
+        "runtime": "python3.7",
+        "role_name": "LabRole",
+        "apigateway_enabled": false,
+        "keep_warm": false,
+        "manage_roles": false,
+        "s3_bucket": "parcial02"
+    }
+}
