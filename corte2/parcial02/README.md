@@ -20,7 +20,7 @@ Posteriormente, este archivo se sube a un bucket en S3 con la siguiente estructu
 
 Tras realizar este procesamiento, mediante el catalogo de HIVE, se creó una tabla externa llamada "news", la cual contiene toda la información previa.
 
-El scrip con el que se realizó la tabla es el siguiente:
+El script con el que se realizó la tabla es el siguiente:
 ```
 CREATE EXTERNAL TABLE news(
 	titular string,
@@ -34,4 +34,63 @@ CREATE EXTERNAL TABLE news(
 	lines terminated by "\n"
 	location "s3://parcial02/news/final/"
 	TBLPROPERTIES ("skip.header.line.count"="1");
+```
+Tras la creación de la tabla, es posible realizar consultas a esta mediante el catalogo de presto-cli. Consultas cómo:
+```
+presto:default> select * from news where periodico='journal';
+```
+Cuyo resultado es:
+```
+                         titular                         |      categoria       |                         url
+---------------------------------------------------------+----------------------+-----------------------------------------------------
+ CT or Coronary Angiography in Stable Chest Pain         | Original Article     | /doi/full/10.1056/NEJMoa2200963?query=featured_home
+ Communicating Covid-19 Science                          | Editorial            | /doi/full/10.1056/NEJMe2205606?query=featured_home
+ "Peers                                                  |  Professionalism     |  and Improvement"
+ A Data Infrastructure for Clinical Trial Diversity      | Perspective          | /doi/full/10.1056/NEJMp2201433?query=featured_home
+ Expanding Accountable Care among Medicare Beneficiaries | Perspective          | /doi/full/10.1056/NEJMp2202991?query=featured_home
+ The E-Cigarette Flavor Debate                           | Perspective          | /doi/full/10.1056/NEJMp2119107?query=featured_home
+ Needlestick                                             | Perspective          | /doi/full/10.1056/NEJMp2201012?query=featured_home
+ Protection against Omicron by a Fourth Vaccine Dose     | Original Article     | /doi/full/10.1056/NEJMoa2201688?query=featured_home
+ Vaccine for RSV in Pregnancy                            | Original Article     | /doi/full/10.1056/NEJMoa2106062?query=featured_home
+ Nasal High-Flow Therapy during Neonatal Intubation      | Original Article     | /doi/full/10.1056/NEJMoa2116735?query=featured_home
+ Ipilimumab after Anti–PD-1 and Anti–LAG-3 Therapy       | Correspondence       | /doi/full/10.1056/NEJMc2119768?query=featured_home
+ Restricted Calories and Eating Times in Weight Loss     | Original Article     | /doi/full/10.1056/NEJMoa2114833?query=featured_home
+ Understanding Vaccine Safety                            | Review Article       | /doi/full/10.1056/NEJMra2200583?query=featured_home
+ Early-Onset Colorectal Cancer                           | Review Article       | /doi/full/10.1056/NEJMra2200869?query=featured_home
+ Metric Myopia                                           | Medicine and Society | /doi/full/10.1056/NEJMms2200977?query=featured_home
+ "A Man with Myalgias                                    |  Fever               |  and Bradycardia"
+ Reassessing Quality Assessment                          | Medicine and Society | /doi/full/10.1056/NEJMms2200976?query=featured_home
+(17 rows)
+
+Query 20220502_041152_00008_x8atd, FINISHED, 2 nodes
+Splits: 17 total, 17 done (100.00%)
+1:16 [17 rows, 1.82KB] [0 rows/s, 24B/s]
+```
+Aqui tenemos un segundo ejemplo:
+```
+presto:default> select categoria from news where periodico='journal';
+      categoria
+----------------------
+ Original Article
+ Editorial
+  Professionalism
+ Perspective
+ Perspective
+ Perspective
+ Perspective
+ Original Article
+ Original Article
+ Original Article
+ Correspondence
+ Original Article
+ Review Article
+ Review Article
+ Medicine and Society
+  Fever
+ Medicine and Society
+(17 rows)
+
+Query 20220502_041921_00015_x8atd, FINISHED, 1 node
+Splits: 17 total, 17 done (100.00%)
+0:01 [17 rows, 1.82KB] [11 rows/s, 1.23KB/s]
 ```
