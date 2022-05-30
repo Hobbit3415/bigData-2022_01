@@ -42,7 +42,7 @@ for i in range(len(df['PRICE'])):
 ```
 ### Producer en ejecución
 
-![Ejecución del productor](parcial03/capturas/producer.png)
+![Ejecución del productor](capturas/producer.png)
 
 ## [2. consumer01.py](https://github.com/Hobbit3415/bigData-2022_01/blob/master/corte3/parcial03/consumer01.py)
 
@@ -103,7 +103,7 @@ if precio > maximo:
 ```
 ### Consumer01 en ejecución
 
-![Ejecución de consumer01.py](parcial03/capturas/consumer01.png)
+![Ejecución de consumer01.py](capturas/consumer01.png)
 
 ## [3. consumer02.py](https://github.com/Hobbit3415/bigData-2022_01/blob/master/corte3/parcial03/consumer02.py)
 El segundo consumidor tomará los datos de la cola Kafka y subirá a un bucket en S3 el promedio de precios de las acciones
@@ -148,4 +148,4 @@ for message in consumer:
 ```
 ### Consumer 02 en ejecución
 
-![Ejecución de consumer 02](parcial03/capturas/consumer02.png)
+![Ejecución de consumer 02](capturas/consumer02.png)
