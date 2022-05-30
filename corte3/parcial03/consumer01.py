@@ -1,8 +1,6 @@
 from kafka import KafkaConsumer
 import statistics
-import boto3
 consumer = KafkaConsumer("quickstart-events", bootstrap_servers=['localhost:9092'])
-s3 = boto3.client('s3')
 
 maximo = 1408000
 minimo = 1407500
